@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="common.Staff" table="STAFF">
+        <id name="staffId" type="java.lang.Integer">
+            <column name="staff_id" />
+            <generator class="identity" />
+        </id>
+        <property name="firstName">
+            <column name="first_name"/>
+        </property>
+        <property name="lastName">
+            <column name="last_name"/>
+        </property>
+        <property name="address">
+            <column name="address"/>
+        </property>
+        <property name="picture">
+            <column name="picture"/>
+        </property>
+        <property name="email">
+            <column name="email"/>
+        </property>
+        <property name="storeId">
+            <column name="store_id"/>
+        </property>
+        <property name="active">
+            <column name="active"/>
+        </property>
+        <property name="username">
+            <column name="username"/>
+        </property>
+        <property name="password">
+            <column name="password"/>
+        </property>
+        <property name="lastUpdated">
+            <column name="last_update"/>
+        </property>
+    </class>
+</hibernate-mapping>

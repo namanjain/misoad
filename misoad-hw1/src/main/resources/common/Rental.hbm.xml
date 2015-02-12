@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="common.Rental" table="RENTAL">
+        <id name="rentalId" type="java.lang.Integer">
+            <column name="rental_id" />
+            <generator class="identity" />
+        </id>
+        <property name="rentalDate">
+            <column name="rental_date"/>
+        </property>
+        <property name="inventoryId">
+            <column name="inventory_id"/>
+        </property>
+        <property name="customerId">
+            <column name="customer_id"/>
+        </property>
+        <property name="returnDate">
+            <column name="return_date"/>
+        </property>
+        <property name="staffId">
+            <column name="staff_id"/>
+        </property>
+        <property name="lastUpdated">
+            <column name="last_update"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="common.Payment" table="PAYMENT">
+        <id name="paymentId" type="java.lang.Integer">
+            <column name="payment_id" />
+            <generator class="identity" />
+        </id>
+        <property name="customerId">
+            <column name="customer_id"/>
+        </property>
+        <property name="staffId">
+            <column name="staff_id"/>
+        </property>
+        <property name="rentalId">
+            <column name="rental_id"/>
+        </property>
+        <property name="amount">
+            <column name="amount"/>
+        </property>
+        <property name="paymentDate">
+            <column name="payment_date"/>
+        </property>
+        <property name="lastUpdated">
+            <column name="last_update"/>
+        </property>
+    </class>
+</hibernate-mapping>
