@@ -12,6 +12,7 @@ public class StaffInfo {
     private Timestamp timestamp;
 
     public StaffInfo() {
+        staff = new Staff();
     }
 
     public StaffInfo(Staff staff, String address, Link picture, Boolean active, Timestamp timestamp) {
@@ -80,6 +81,14 @@ public class StaffInfo {
 
         public void setData(StaffData data) {
             this.data = data;
+        }
+
+        public Link getLink() {
+            return link;
+        }
+
+        public void setLink(Link link) {
+            this.link = link;
         }
     }
 

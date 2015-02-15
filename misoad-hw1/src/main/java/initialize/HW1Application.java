@@ -3,16 +3,9 @@ package initialize;
 import com.yammer.dropwizard.Service;
 import com.yammer.dropwizard.config.Bootstrap;
 import com.yammer.dropwizard.config.Environment;
-import common.Payment;
-import common.Rental;
-import common.Staff;
-import common.Store;
 import config.HW1Configuration;
-import dal.HibernateUtil;
-import org.hibernate.Session;
 import web.resources.StaffResource;
 
-import java.util.Date;
 import java.util.HashMap;
 
 /**

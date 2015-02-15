@@ -6,10 +6,10 @@ public class Name {
     String first;
     String last;
 
-    private Name() {
+    public Name() {
     }
 
-    private Name(String first, String last) {
+    public Name(String first, String last) {
         this.first = first;
         this.last = last;
     }
