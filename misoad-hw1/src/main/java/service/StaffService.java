@@ -4,6 +4,7 @@ import com.sun.jersey.api.NotFoundException;
 import common.*;
 import dal.StaffDal;
 import org.apache.commons.collections.CollectionUtils;
+import utils.LinkUtils;
 import utils.StringUtils;
 import web.resources.dto.Link;
 import web.resources.dto.Name;
@@ -44,11 +45,11 @@ public class StaffService {
         return validationResult;
     }
 
-    public ValidationResult updateStaff(StaffInfo staffInfo) {
+    public ValidationResult updateStaff(Integer staffId, StaffInfo staffInfo) {
         ValidationResult validationResult = validateStaffInfo(staffInfo);
         if(ValidationResultType.success.equals(validationResult.getValidationResultType())) {
             Staff staff = convertStaffInfoToStaff(staffInfo);
-            //update staff, not insert staff
+            staff.setStaffId(staffId);
             staffDal.updateStaff(staff);
             return new ValidationResultSuccess<Integer>();
         }
@@ -132,7 +133,7 @@ public class StaffService {
             if (addLinks) {
                 Link staffInfoStaffLink = new Link();
                 staffInfoStaffLink.setRel(Relation.self);
-                staffInfoStaffLink.setHref(getStaffInfoStaffLink(staff.getStaffId()));
+                staffInfoStaffLink.setHref(LinkUtils.getStaffLink(staff.getStaffId()));
                 staffInfoStaff.setLink(staffInfoStaffLink);
             }
             //converting other variables
@@ -172,6 +173,9 @@ public class StaffService {
                         errorCodesList.add(ValidationErrorCodes.MISSING_LAST_NAME);
                     }
                 }
+                if(staffData.getId() != null) {
+                    errorCodesList.add(ValidationErrorCodes.ID_NOT_ALLOWED);
+                }
                 //validate email
             }
         }
@@ -183,9 +187,5 @@ public class StaffService {
             validationResult = failure;
         }
         return validationResult;
-    }
-
-    public String getStaffInfoStaffLink(Integer staffId) {
-        return Constants.staffInfoStaffLink+"/"+staffId;
     }
 }

@@ -6,12 +6,15 @@ import common.Constants;
 import common.ValidationResult;
 import common.ValidationResultType;
 import service.StaffService;
+import utils.LinkUtils;
 import web.resources.dto.StaffInfo;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.net.URI;
 
+//TODO: Implement store get and link :/
 
 @Path("/staffs")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -98,7 +101,7 @@ public class StaffResource {
             ValidationResult validationResult = staffService.createStaff(staffInfo);
             if(validationResult.getValidationResultType() == ValidationResultType.success) {
                 Integer staffId = (Integer) validationResult.getEntity();
-                return Response.ok().entity(staffId).build();
+                return Response.created(new URI(LinkUtils.getStaffLink(staffId))).build();
             } else {
                 return Response.status(Response.Status.BAD_REQUEST).entity(validationResult.getEntity()).build();
             }
@@ -112,9 +115,9 @@ public class StaffResource {
     @PUT
     @Timed
     @Path("/{id}")
-    public Response updateStaffUsingPost(StaffInfo staffInfo) {
+    public Response updateStaff(@PathParam("id") Integer staffId, StaffInfo staffInfo) {
         try {
-            ValidationResult validationResult = staffService.updateStaff(staffInfo);
+            ValidationResult validationResult = staffService.updateStaff(staffId, staffInfo);
             if(validationResult.getValidationResultType() == ValidationResultType.success) {
                 return Response.noContent().build();
             } else {
@@ -128,9 +131,14 @@ public class StaffResource {
     //Should this return 404 content not found? It will take away its idempotency. I think I should not do it
     @DELETE
     @Timed
-    @Path("/staffs/{id}")
-    public Response deleteStaff(@PathParam("id") String staffId) {
-        return Response.noContent().build();
+    @Path("/{id}")
+    public Response deleteStaff(@PathParam("id") Integer staffId) {
+        try {
+            staffService.deleteStaff(staffId);
+            return Response.noContent().build();
+        } catch (Exception e) {
+            return Response.serverError().build();
+        }
     }
 
 }

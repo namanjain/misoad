@@ -1,12 +1,13 @@
 package utils;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 /**
  * Created by naman on 2/11/15.
  */
-public class HibernateUtil {
+public class HibernateUtils {
 
     private static final SessionFactory sessionFactory = buildSessionFactory();
 
@@ -24,6 +25,16 @@ public class HibernateUtil {
 
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
+    }
+
+    public static Session getSession() {
+        return getSessionFactory().openSession();
+    }
+
+    public static void returnSession(Session session) {
+        if(session != null) {
+            session.close();
+        }
     }
 
     public static void shutdown() {

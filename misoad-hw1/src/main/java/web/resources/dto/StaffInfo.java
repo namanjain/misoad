@@ -9,17 +9,20 @@ public class StaffInfo {
     private String address;
     private Link picture;
     private Boolean active;
+    private Store store;
     private Timestamp timestamp;
 
     public StaffInfo() {
         staff = new Staff();
+        store = new Store();
     }
 
-    public StaffInfo(Staff staff, String address, Link picture, Boolean active, Timestamp timestamp) {
+    public StaffInfo(Staff staff, String address, Link picture, Boolean active, Store store, Timestamp timestamp) {
         this.staff = staff;
         this.address = address;
         this.picture = picture;
         this.active = active;
+        this.store = store;
         this.timestamp = timestamp;
     }
 
@@ -53,6 +56,14 @@ public class StaffInfo {
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    public Store getStore() {
+        return store;
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
     }
 
     public Timestamp getTimestamp() {
