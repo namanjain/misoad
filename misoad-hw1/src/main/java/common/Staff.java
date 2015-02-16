@@ -3,7 +3,7 @@ package common;
 import java.sql.Blob;
 import java.sql.Timestamp;
 
-public class Staff implements java.io.Serializable {
+public class Staff implements java.io.Serializable, Entity {
 
     private static final long serialVersionUID = 2L;
 
@@ -39,6 +39,11 @@ public class Staff implements java.io.Serializable {
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
+    }
+
+    @Override
+    public Integer getEntityId() {
+        return staffId;
     }
 
     public Integer getStaffId() {
@@ -128,4 +133,5 @@ public class Staff implements java.io.Serializable {
     public void setLastUpdated(Timestamp lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
+
 }

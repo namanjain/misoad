@@ -3,10 +3,8 @@ package common;
 import java.sql.Timestamp;
 import java.util.Date;
 
-/**
- * Created by naman on 2/11/15.
- */
-public class Rental {
+
+public class Rental implements java.io.Serializable, Entity {
 
     private static final long serialVersionUID = 1L;
 
@@ -34,6 +32,11 @@ public class Rental {
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
+    }
+
+    @Override
+    public Integer getEntityId() {
+        return getRentalId();
     }
 
     public Integer getRentalId() {
@@ -91,4 +94,5 @@ public class Rental {
     public void setLastUpdated(Timestamp lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
+
 }

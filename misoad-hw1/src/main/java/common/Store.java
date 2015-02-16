@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 /**
  * Created by naman on 2/11/15.
  */
-public class Store implements java.io.Serializable {
+public class Store implements java.io.Serializable, Entity {
 
     private static final long serialVersionUID = 1L;
 
@@ -26,6 +26,11 @@ public class Store implements java.io.Serializable {
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
+    }
+
+    @Override
+    public Integer getEntityId() {
+        return storeId;
     }
 
     public Integer getStoreId() {

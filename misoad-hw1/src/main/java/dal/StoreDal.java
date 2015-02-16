@@ -6,31 +6,7 @@ import utils.HibernateUtils;
 
 public class StoreDal {
 
-
-    public Integer insertStore(Store store) {
-        Session session = null;
-        try {
-            session = HibernateUtils.getSession();
-            session.beginTransaction();
-            session.save(store);
-            session.getTransaction().commit();
-            return store.getStoreId();
-        } finally {
-            HibernateUtils.returnSession(session);
-        }
-    }
-
-    public void updateStore(Store store) {
-        Session session = null;
-        try {
-            session = HibernateUtils.getSession();
-            session.beginTransaction();
-            session.merge(store);
-            session.getTransaction().commit();
-        } finally {
-            HibernateUtils.returnSession(session);
-        }
-    }
+    HibernateDal hibernateDal = new HibernateDal();
 
     public Store getStore(Integer storeId) {
         Session session = null;
@@ -44,19 +20,17 @@ public class StoreDal {
         }
     }
 
-
-    public void deleteStore(Integer storeId) {
-        Session session = null;
-        try {
-            session = HibernateUtils.getSession();
-            session.beginTransaction();
-            Store store = new Store();
-            store.setStoreId(storeId);
-            session.delete(store);
-            session.getTransaction().commit();
-        } finally {
-            HibernateUtils.returnSession(session);
-        }
+    public Integer insertStore(Store store) {
+        return hibernateDal.insert(store);
     }
 
+    public void updateStore(Store store) {
+        hibernateDal.update(store);
+    }
+
+    public void deleteStore(Integer storeId) {
+        Store store = new Store();
+        store.setStoreId(storeId);
+        hibernateDal.delete(store);
+    }
 }

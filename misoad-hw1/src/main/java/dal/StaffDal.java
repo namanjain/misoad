@@ -6,30 +6,7 @@ import utils.HibernateUtils;
 
 public class StaffDal {
 
-    public Integer insertStaff(Staff staff) {
-        Session session = null;
-        try {
-            session = HibernateUtils.getSession();
-            session.beginTransaction();
-            session.save(staff);
-            session.getTransaction().commit();
-            return staff.getStaffId();
-        } finally {
-            HibernateUtils.returnSession(session);
-        }
-    }
-
-    public void updateStaff(Staff staff) {
-        Session session = null;
-        try {
-            session = HibernateUtils.getSession();
-            session.beginTransaction();
-            session.merge(staff);
-            session.getTransaction().commit();
-        } finally {
-            HibernateUtils.returnSession(session);
-        }
-    }
+    HibernateDal hibernateDal = new HibernateDal();
 
     public Staff getStaff(Integer staffId) {
         Session session = null;
@@ -41,18 +18,17 @@ public class StaffDal {
         }
     }
 
+    public Integer insertStaff(Staff staff) {
+        return hibernateDal.insert(staff);
+    }
+
+    public void updateStaff(Staff staff) {
+        hibernateDal.update(staff);
+    }
 
     public void deleteStaff(Integer staffId) {
-        Session session = null;
-        try {
-            session = HibernateUtils.getSession();
-            session.beginTransaction();
-            Staff staff = new Staff();
-            staff.setStaffId(staffId);
-            session.delete(staff);
-            session.getTransaction().commit();
-        } finally {
-            HibernateUtils.returnSession(session);
-        }
+        Staff staff = new Staff();
+        staff.setStaffId(staffId);
+        hibernateDal.delete(staff);
     }
 }

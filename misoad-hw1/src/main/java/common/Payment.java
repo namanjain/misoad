@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * Created by naman on 2/11/15.
  */
-public class Payment implements java.io.Serializable {
+public class Payment implements java.io.Serializable, Entity {
 
     private static final long serialVersionUID = 1L;
 
@@ -34,6 +34,11 @@ public class Payment implements java.io.Serializable {
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
+    }
+
+    @Override
+    public Integer getEntityId() {
+        return paymentId;
     }
 
     public Integer getPaymentId() {
@@ -91,5 +96,6 @@ public class Payment implements java.io.Serializable {
     public void setLastUpdated(Timestamp lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
+
 }
 
