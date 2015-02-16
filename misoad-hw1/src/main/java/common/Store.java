@@ -2,9 +2,7 @@ package common;
 
 import java.sql.Timestamp;
 
-/**
- * Created by naman on 2/11/15.
- */
+
 public class Store implements java.io.Serializable, Entity {
 
     private static final long serialVersionUID = 1L;

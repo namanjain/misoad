@@ -3,9 +3,6 @@ package common;
 import java.sql.Timestamp;
 import java.util.Date;
 
-/**
- * Created by naman on 2/11/15.
- */
 public class Payment implements java.io.Serializable, Entity {
 
     private static final long serialVersionUID = 1L;

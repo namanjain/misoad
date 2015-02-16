@@ -4,9 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.yammer.dropwizard.config.Configuration;
 import org.hibernate.validator.constraints.NotEmpty;
 
-/**
- * Created by naman on 2/2/15.
- */
 public class HW1Configuration extends Configuration {
 
     @NotEmpty

@@ -1,8 +1,5 @@
 package common;
 
-/**
- * Created by naman on 2/15/15.
- */
 public enum ValidationErrorCodes {
 
     MISSING_FIRST_NAME("First name is missing"),

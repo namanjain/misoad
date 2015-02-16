@@ -8,9 +8,6 @@ import web.resources.StaffResource;
 
 import java.util.HashMap;
 
-/**
- * Created by naman on 2/2/15.
- */
 public class HW1Application extends Service<HW1Configuration> {
 
     public static void main(String[] args) throws Exception {
